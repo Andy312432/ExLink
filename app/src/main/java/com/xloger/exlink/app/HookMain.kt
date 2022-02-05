@@ -218,13 +218,13 @@ class HookMain : IXposedHookLoadPackage {
         private fun parseUrl(rule: Rule, param: XC_MethodHook.MethodHookParam): String {
             val intent = param.args[0] as Intent
             if (rule.extrasKey == EX_DAT) {
-                return intent.dataString.toString()
+                return intent.dataString
             } else if (!intent.getStringExtra(rule.extrasKey).isNullOrBlank()) {
-                return intent.getStringExtra(rule.extrasKey).toString()
+                return intent.getStringExtra(rule.extrasKey)
             } else {
                 val bundle = getBundle(param)
                 if (bundle?.getString(rule.extrasKey) != null) {
-                    return bundle.getString(rule.extrasKey).toString()
+                    return bundle.getString(rule.extrasKey)
                 }
             }
             return ""
@@ -300,7 +300,6 @@ class HookMain : IXposedHookLoadPackage {
                     if (keySet != null) {
                         for (key in keySet) {
                             val o = (extras?.get(key) ?: continue).toString()
-                            //val value = o.toString()
 
                             if (StreamUtil.isContain(o)) {
                                 openExlink(param, key)

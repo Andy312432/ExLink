@@ -43,7 +43,7 @@ object ExConfig {
     }
 
     fun loadFromApp(key: String): String {
-        return sp.getString(key, "") ?: return ""
+        return sp.getString(key, "")
     }
 
     @Deprecated("高版本不支持，不推荐使用")
@@ -56,7 +56,7 @@ object ExConfig {
             xsp.reload()
             val string = xsp.getString(key, "")
 //            MyLog.e("string:${string}")
-            return string ?: return ""
+            return string
         } catch (ex: NoClassDefFoundError) {
             MyLog.e("找不到 XSharedPreferences")
             return ""
